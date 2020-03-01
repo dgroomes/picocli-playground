@@ -1,3 +1,5 @@
+package dgroomes;
+
 import org.junit.jupiter.api.Test;
 
 class MainTest {
