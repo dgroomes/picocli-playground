@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class AppTest {
 
     @Test void appHasAGreeting() {
-        App classUnderTest = new App();
+        Main classUnderTest = new Main();
 
         var greeting = classUnderTest.getGreeting();
         System.out.println(String.format("Found greeting '%s'", greeting));
