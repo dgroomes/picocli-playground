@@ -26,7 +26,7 @@ configurations.register("junitLauncher")
 dependencies {
     "junitLauncher"("org.junit.platform:junit-platform-console-standalone:$junitPlatformVersion")
 
-    implementation("info.picocli:picocli:$picocliVersion")
+//    implementation("info.picocli:picocli:$picocliVersion")
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("org.slf4j:slf4j-simple:$slf4jVersion")
 
