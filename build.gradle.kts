@@ -12,7 +12,7 @@ plugins {
 
 val slf4jVersion = "1.7.26"
 val junitPlatformVersion = "1.5.2"
-val junitJupiterVersion = "5.5.2"
+val junitJupiterVersion = "5.5.1"
 val picocliVersion = "4.2.0"
 val jacksonVersion = "2.10.1"
 
