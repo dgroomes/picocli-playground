@@ -76,8 +76,13 @@ tasks {
         options.compilerArgs.addAll(arrayOf("--enable-preview"))
     }
 
-    withType(CreateStartScripts::class.java) {
+    named<CreateStartScripts>("startScripts") {
         defaultJvmOpts = listOf("--enable-preview")
+    }
+
+    named<JavaExec>("run") {
+        setExecutable("$java14Home/bin/java")
+        jvmArgs = listOf("--enable-preview")
     }
 }
 
