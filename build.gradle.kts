@@ -11,8 +11,8 @@ plugins {
 }
 
 val slf4jVersion = "1.7.26"
-val junitPlatformVersion = "1.5.2"
-val junitJupiterVersion = "5.5.1"
+val junitPlatformVersion = "1.6.0"
+val junitJupiterVersion = "5.6.0"
 val picocliVersion = "4.2.0"
 val jacksonVersion = "2.10.1"
 
@@ -26,7 +26,7 @@ configurations.register("junitLauncher")
 dependencies {
     "junitLauncher"("org.junit.platform:junit-platform-console-standalone:$junitPlatformVersion")
 
-//    implementation("info.picocli:picocli:$picocliVersion")
+    implementation("info.picocli:picocli:$picocliVersion")
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("org.slf4j:slf4j-simple:$slf4jVersion")
 
@@ -39,7 +39,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = "App"
+    mainClassName = "dgroomes.Main"
 }
 
 java {
@@ -64,16 +64,20 @@ if (!java14HomeFile.exists()) {
     throw IllegalArgumentException("JAVA_14_HOME environment variable must be set to the path of JDK14 but was not a real file: $java14Home")
 }
 
-/**
- * Configure the compiler step to accommodate:
- * - Java 14 by forking a javac process using JDK 14 instead of the Java that is running the Gradle process (Gradle does not support 14)
- * - Java 14 preview features
- */
 tasks {
+    /**
+     * Configure the compiler step to accommodate:
+     * - Java 14 by forking a javac process using JDK 14 instead of the Java that is running the Gradle process (Gradle does not support 14)
+     * - Java 14 preview features
+     */
     withType(JavaCompile::class.java) {
         options.isFork = true
         options.forkOptions.javaHome = java14HomeFile
         options.compilerArgs.addAll(arrayOf("--enable-preview"))
+    }
+
+    withType(CreateStartScripts::class.java) {
+        defaultJvmOpts = listOf("--enable-preview")
     }
 }
 
