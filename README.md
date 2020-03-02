@@ -11,7 +11,7 @@ execute some "execution" tasks. Read the `build.gradle.kts` file with care to se
 Java 14 to compile and execute the program.
 
 Unfortunately, I can't figure out how to configure Gradle to sucessfully execute the "test" task using Java 14. Instead,
-I am relying on the Standalone JUnit Console Launcher to work around this limitation. Read more at (#instructions).  
+I am relying on the Standalone JUnit Console Launcher to work around this limitation. Read more at [Instructions](#instructions).  
 
 ## Instructions
 
