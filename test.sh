@@ -45,7 +45,13 @@ assertJavaVersion
 
 LAUNCHER_PATH=$(cat "$LAUNCHER_PATH_FILE")
 
-"$JAVA_14_BIN" -jar "$LAUNCHER_PATH" \
+# Run the tests.
+#
+# NOTE: It is necessary to match the Java Major.Minor versions of the compiled Java class files with the Java
+# Major.Minor of the Java running this process. In this case, we are careful to include "--enable-preview" flag because
+# this was used to compile the classes. JUnit will silently fail and simply *not* discover tests that have a higher
+# Major.Minor version. I've lost a couple hours on this on two separate occasions!
+"$JAVA_14_BIN" --enable-preview -jar "$LAUNCHER_PATH" \
   --include-engine junit-jupiter \
   --fail-if-no-tests \
   --scan-classpath \

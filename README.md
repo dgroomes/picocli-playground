@@ -2,9 +2,6 @@
 
 NOT IMPLEMENTED Learning and exploring Picocli <https://picocli.info/>
 
-PROBLEM. Why doesn't the JUnit Standalone Console Launcher find the test? I am mimicking <https://github.com/dgroomes/junit-playground>
-closely but can't find the difference that matters. 
-
 ## Description
 
 This project uses Java 14 and the new `Records` language feature <https://openjdk.java.net/jeps/359>. Gradle itself 
