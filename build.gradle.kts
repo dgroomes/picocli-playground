@@ -43,29 +43,14 @@ application {
 }
 
 java {
-
-    sourceCompatibility = JavaVersion.VERSION_14
-}
-
-val java14Home = System.getenv("JAVA_14_HOME")
-if (java14Home == null || java14Home.isBlank()) {
-    throw IllegalArgumentException("JAVA_14_HOME environment variable must be set to the path of JDK14 but was not set")
-}
-
-val java14HomeFile = File(java14Home)
-if (!java14HomeFile.exists()) {
-    throw IllegalArgumentException("JAVA_14_HOME environment variable must be set to the path of JDK14 but was not a real file: $java14Home")
+    sourceCompatibility = JavaVersion.VERSION_15
 }
 
 tasks {
     /**
-     * Configure the compiler step to accommodate:
-     * - Java 14 by forking a javac process using JDK 14 instead of the Java that is running the Gradle process (Gradle does not support 14)
-     * - Java 14 preview features
+     * Configure the compiler step to accommodate Java preview features
      */
     withType(JavaCompile::class.java) {
-        options.isFork = true
-        options.forkOptions.javaHome = java14HomeFile
         options.compilerArgs.addAll(arrayOf("--enable-preview"))
     }
 
@@ -74,7 +59,6 @@ tasks {
     }
 
     named<JavaExec>("run") {
-        setExecutable("$java14Home/bin/java")
         jvmArgs = listOf("--enable-preview")
     }
 }
