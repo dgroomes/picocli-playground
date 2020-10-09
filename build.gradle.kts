@@ -44,14 +44,7 @@ application {
 
 java {
 
-    /**
-     * This is how to configure the Java compilation task to use Java 14.
-     * In this case, we are using Gradle 6, which supports up to Java 13. So, JavaVersion.VERSION_HIGHER resolves to the
-     * "next version of Java after 13" which is 14. See https://github.com/gradle/gradle/blob/2af1a363f3d3b8d69f5bb1f07dde828b635edfe6/subprojects/base-services/src/main/java/org/gradle/api/JavaVersion.java#L58
-     * There is no way to configure Java 15 or beyond until Gradle supports Java 14. And so on for future versions of
-     * Java and Gradle.
-     */
-    sourceCompatibility = JavaVersion.VERSION_HIGHER
+    sourceCompatibility = JavaVersion.VERSION_14
 }
 
 val java14Home = System.getenv("JAVA_14_HOME")
