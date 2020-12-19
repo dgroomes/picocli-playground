@@ -1,6 +1,8 @@
 # picocli-playground
 
-NOT IMPLEMENTED Learning and exploring Picocli <https://picocli.info/>
+NOT YET IMPLEMENTED
+
+📚 Learning and exploring Picocli <https://picocli.info/>
 
 ## Gradle + Java 15
 
