@@ -17,8 +17,7 @@ val picocliVersion = "4.2.0"
 val jacksonVersion = "2.10.1"
 
 repositories {
-    mavenLocal()
-    jcenter()
+    mavenCentral()
 }
 
 configurations.register("junitLauncher")
