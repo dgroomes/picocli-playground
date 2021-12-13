@@ -29,7 +29,7 @@ public class GradleProjectDetector {
     }
 
     /**
-     * Search
+     * Search for and detect Gradle projects.
      *
      * @param searchDirectory search for projects in this directory and its sub-directories
      * @param searchDepth     the max depth to search. A value of 0 means "only search the given directory and don't look
@@ -73,7 +73,7 @@ public class GradleProjectDetector {
     private List<File> detectGradleProjects() throws IOException {
         log.info("Searching for and detecting Gradle projects in the directory '{}' at a depth of '{}'", searchDirectory, searchDepth);
         var searchPath = searchDirectory.toPath();
-        try (var settingsFiles = Files.find(searchPath, searchDepth, this::isGradleSettingsFile)) {
+        try (var settingsFiles = Files.find(searchPath, searchDepth + 1, this::isGradleSettingsFile)) {
             return settingsFiles.map(path -> path.getParent().toFile()).toList();
         }
     }

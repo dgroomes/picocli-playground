@@ -58,7 +58,12 @@ public class DetectGradleProjectCommand implements Callable<Integer> {
 
     private int handle(ProjectsFound projectsFound) {
         List<File> gradleProjects = projectsFound.gradleProjects();
-        log.info("Found {} Gradle projects:", gradleProjects.size());
+        int size = gradleProjects.size();
+        if (size == 1) {
+            log.info("Found 1 Gradle project:");
+        } else {
+            log.info("Found {} Gradle projects:", size);
+        }
         for (var gradleProject : gradleProjects) {
             log.info(gradleProject.toString());
         }

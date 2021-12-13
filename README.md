@@ -12,11 +12,13 @@ Follow the below instructions to build and run the program.
 
 1. Use Java 17
 2. Build the program and run the tests:
-   * `./gradlew test`
-3. Build and run the program: 
-   * `./gradlew cli:run`
-4. Run the program but with some command-line arguments this time:
-   * `./gradlew cli:run --args '.. --depth 1'`
+    * `./gradlew test`
+3. Build and run the program with the required and optional command-line arguments:
+    * `./gradlew cli:run --args ".. --depth 0"`
+4. Next, try another directory:
+    * For example, I place my own repositories in `~/repos/personal`. So, I can use the CLI to search for Gradle
+      projects in that directory with the following command.
+    * `./gradlew cli:run --args "$HOME/repos/personal --depth 1"`
 
 ## Wish List
 
@@ -28,8 +30,8 @@ General clean-ups, TODOs and things I wish to implement for this project:
 * Generate auto completion scripts
 * Include instructions that eject from Gradle
 * Implement CLI help output (e.g. the `--help` option output)
-* IN PROGRESS Implement something at least vaguely useful, like "detect a Gradle project" and take options for "how many levels deep
-  to check in the directory structure (depth)" 
+* DONE Implement something at least vaguely useful, like "detect a Gradle project" and take options for "how many
+  levels deep to check in the directory structure (depth)"
 
 ## Reference
 

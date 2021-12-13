@@ -16,16 +16,15 @@ class GradleProjectDetectorTest {
     void search() {
         // Arrange
         var path = projectRootDir();
-        int illegalSearchDepth = 1;
+        int searchDepth = 0;
 
         // Act
-        GradleDetectionResult result = GradleProjectDetector.search(path, illegalSearchDepth);
+        GradleDetectionResult result = GradleProjectDetector.search(path, searchDepth);
 
         // Assert
-        assertThat(result).isExactlyInstanceOf(ProjectsFound.class);
         ProjectsFound projectsFound = switch (result) {
             case ProjectsFound cast -> cast;
-            default -> throw new AssertionFailedError("Result was not the expected type", ProjectsFound.class, result.getClass());
+            default -> throw new AssertionFailedError("Result was not the expected type. Expected %s but found %s".formatted(ProjectsFound.class, result.getClass()));
         };
         assertThat(projectsFound.gradleProjects()).hasSize(1);
     }
@@ -45,7 +44,7 @@ class GradleProjectDetectorTest {
         // Assert
         InvalidSearchParams invalidSearchParams = switch (result) {
             case InvalidSearchParams cast -> cast;
-            default -> throw new AssertionFailedError("Result was not the expected type", InvalidSearchParams.class, result.getClass());
+            default -> throw new AssertionFailedError("Result was not the expected type. Expected %s but found %s".formatted(InvalidSearchParams.class, result.getClass()));
         };
         assertThat(invalidSearchParams.errorMessage()).containsIgnoringCase("must be 0 or greater");
     }
@@ -57,15 +56,15 @@ class GradleProjectDetectorTest {
     void nonExistentSearchDirectory() {
         // Arrange
         var path = Path.of("non-existent-directory");
-        int illegalSearchDepth = 1;
+        int searchDepth = 0;
 
         // Act
-        GradleDetectionResult result = GradleProjectDetector.search(path, illegalSearchDepth);
+        GradleDetectionResult result = GradleProjectDetector.search(path, searchDepth);
 
         // Assert
         InvalidSearchParams invalidSearchParams = switch (result) {
             case InvalidSearchParams cast -> cast;
-            default -> throw new AssertionFailedError("Result was not the expected type", InvalidSearchParams.class, result.getClass());
+            default -> throw new AssertionFailedError("Result was not the expected type. Expected %s but found %s".formatted(InvalidSearchParams.class, result.getClass()));
         };
         assertThat(invalidSearchParams.errorMessage()).containsIgnoringCase("does not exist");
     }
