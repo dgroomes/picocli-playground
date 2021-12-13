@@ -1,7 +1,5 @@
 # picocli-playground
 
-NOT YET FULLY IMPLEMENTED
-
 📚 Learning and exploring picocli.
 
 > picocli - a mighty tiny command line interface

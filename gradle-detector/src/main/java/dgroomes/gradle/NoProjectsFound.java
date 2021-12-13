@@ -1,4 +1,4 @@
 package dgroomes.gradle;
 
-public record NoProjectsFound() implements GradleDetectionResult {
+public final class NoProjectsFound implements GradleDetectionResult {
 }

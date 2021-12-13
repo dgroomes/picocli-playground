@@ -1,9 +1,6 @@
 package dgroomes.cli;
 
-import dgroomes.gradle.GradleProjectDetector;
-import dgroomes.gradle.InvalidSearchParams;
-import dgroomes.gradle.NoProjectsFound;
-import dgroomes.gradle.ProjectsFound;
+import dgroomes.gradle.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine.Command;
@@ -25,12 +22,12 @@ public class DetectGradleProjectCommand implements Callable<Integer> {
     public static final int EXIT_CODE_SUCCESS = 0;
     public static final int EXIT_CODE_FAILURE = 1;
 
-    @Option(names = {"--depth"}, description = "Directory search depth")
-    int depth = 0;
+    @Option(names = {"--depth"}, defaultValue = "0", description = "Directory search depth")
+    int depth;
 
     @SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-    @Parameters(paramLabel = "<search-directory>", defaultValue = ".", description = "The directory to search for and detect Gradle projects")
-    private String directory = ".";
+    @Parameters(paramLabel = "<search-directory>", description = "The directory to search for and detect Gradle projects")
+    private String directory;
 
     @Override
     public Integer call() {
@@ -38,6 +35,7 @@ public class DetectGradleProjectCommand implements Callable<Integer> {
 
         return switch (result) {
             case InvalidSearchParams inValidSearchParams -> handle(inValidSearchParams);
+            case UnexpectedException unexpectedException -> handle(unexpectedException);
             case NoProjectsFound ignored -> handleNoProjectsFound();
             case ProjectsFound projectsFound -> handle(projectsFound);
         };
@@ -45,6 +43,11 @@ public class DetectGradleProjectCommand implements Callable<Integer> {
 
     private int handle(InvalidSearchParams invalidSearchParams) {
         log.error("Invalid search parameters: {}", invalidSearchParams.errorMessage());
+        return EXIT_CODE_FAILURE;
+    }
+
+    private int handle(UnexpectedException unexpectedException) {
+        log.error("Something went wrong during the detection process: {}", unexpectedException.exception().getMessage());
         return EXIT_CODE_FAILURE;
     }
 
