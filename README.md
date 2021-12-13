@@ -16,9 +16,9 @@ Follow the below instructions to build and run the program.
 2. Build the program and run the tests:
    * `./gradlew test`
 3. Build and run the program: 
-   * `./gradlew run`
+   * `./gradlew cli:run`
 4. Run the program but with some command-line arguments this time:
-   * `./gradlew run --args '.. --depth 1'`
+   * `./gradlew cli:run --args '.. --depth 1'`
 
 ## Wish List
 

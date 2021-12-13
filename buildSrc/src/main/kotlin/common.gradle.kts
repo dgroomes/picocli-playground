@@ -48,7 +48,7 @@ tasks {
         useJUnitPlatform()
         testLogging {
             showStandardStreams = true
-            events = setOf(TestLogEvent.STARTED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
+            events = setOf(TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED)
             exceptionFormat = TestExceptionFormat.FULL
         }
     }
