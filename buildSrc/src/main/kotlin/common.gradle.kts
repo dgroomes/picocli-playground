@@ -26,6 +26,7 @@ dependencies {
         implementation("org.slf4j:slf4j-api:$slf4jVersion")
         implementation("org.slf4j:slf4j-simple:$slf4jVersion")
         implementation("info.picocli:picocli:$picocliVersion")
+        annotationProcessor("info.picocli:picocli-codegen:$picocliVersion")
     }
 
     // Include the same testing dependencies in all projects. We can be more generous with test dependencies than

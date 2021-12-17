@@ -36,8 +36,12 @@ Tip: follow the below instructions to install the CLI on the system.
 General clean-ups, TODOs and things I wish to implement for this project:
 
 * DONE Integrate picocli
-* Use picocli's [code-gen](https://picocli.info/#_annotation_processor). I am generally skeptical of using code gen in
+* ABANDONED (this doesn't appear to actually do code gen. I see `build/generated/` directory but it contains no files,
+  just empty directories. Plus when I make a change in `DetectGradleProjectCommand` to use an Option in an invalid way,
+  specifically `final int depth = 0;` I don't get an error at compile time, only runtime. The premise of the annotation
+  processor is to catch the issue at compile time). Use picocli's [code-gen](https://picocli.info/#_annotation_processor). I am generally skeptical of using code gen in
   projects of significance but I'm happy to learn it, especially because picocli recommends it.
+  * Also see the [picocli-codegen module README](https://github.com/remkop/picocli/tree/master/picocli-codegen)
 * Generate auto completion scripts
 * DONE Include instructions to install the CLI
 * Implement CLI help output (e.g. the `--help` option output)
