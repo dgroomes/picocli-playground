@@ -27,7 +27,7 @@ Tip: follow the below instructions to install the CLI on the system.
 1. Symlink the launcher script to somewhere on the `PATH`
    * `ln -sf "$PWD/cli/build/install/cli/bin/cli" /usr/local/bin/detect-gradle`
 1. Run it!
-   * `detect-gradle .`
+   * `detect-gradle`
 1. Change directories. Run it from anywhere!
    * `cd ~/repos; detect-gradle . --depth 2`
 
@@ -36,7 +36,8 @@ Tip: follow the below instructions to install the CLI on the system.
 General clean-ups, TODOs and things I wish to implement for this project:
 
 * DONE Integrate picocli
-* Use picocli's [code-gen](https://picocli.info/#_annotation_processor). I am generally skeptical of using code gen in
+* DONE By default, use the current directory as the search directory
+* ABANDONED (see the 'codegen' branch) Use picocli's [code-gen](https://picocli.info/#_annotation_processor). I am generally skeptical of using code gen in
   projects of significance but I'm happy to learn it, especially because picocli recommends it.
 * Generate auto completion scripts
 * DONE Include instructions to install the CLI

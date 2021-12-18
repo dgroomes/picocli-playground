@@ -26,7 +26,7 @@ public class DetectGradleProjectCommand implements Callable<Integer> {
     int depth;
 
     @SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
-    @Parameters(paramLabel = "<search-directory>", description = "The directory to search for and detect Gradle projects")
+    @Parameters(paramLabel = "<search-directory>", description = "The directory to search for and detect Gradle projects", defaultValue = ".")
     private String directory;
 
     @Override
